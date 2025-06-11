@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>アレルゲン更新フォーム（複数メニュー選択可）</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .form-section {
+      margin-bottom: 20px;
+    }
+    .note {
+      background-color: #fff4e5;
+      
+      border-left: 6px solid #ff9900;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+    .menu-list, .allergen-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>新規アレルゲン情報の更新</h1>
+
+  <div class="note">
+    新しく追加されたアレルギー項目があります。以下のメニューに対し、該当するアレルゲンが含まれるかどうかを選択して更新してください。
+  </div>
+
+  <form action="/update-menu-allergens" method="post">
+    
+    <!-- 対象メニュー選択 -->
+    <div class="form-section">
+      <label>更新対象のメニュー（複数選択可）:</label>
+      <div class="menu-list">
+        <label><input type="checkbox" name="menu-ids[]" value="1"> 唐揚げ定食</label>
+        <label><input type="checkbox" name="menu-ids[]" value="2"> 海老フライ</label>
+        <label><input type="checkbox" name="menu-ids[]" value="3"> フルーツサラダ</label>
+        <label><input type="checkbox" name="menu-ids[]" value="4"> グリーンカレー</label>
+        <label><input type="checkbox" name="menu-ids[]" value="5"> マンゴープリン</label>
+        <!-- 実際はデータベース連携推奨 -->
+      </div>
+    </div>
+
+    <!-- 新アレルゲン項目選択 -->
+    <div class="form-section">
+      <label>新規アレルギー項目（該当するものにチェック）:</label>
+      <div class="allergen-list">
+        <label><input type="checkbox" name="new-allergens[]" value="マンゴー"> マンゴー</label>
+        <label><input type="checkbox" name="new-allergens[]" value="パクチー"> パクチー</label>
+        <!-- サーバー側でDBから新規項目を取得・生成するのが理想です -->
+      </div>
+    </div>
+
+    <button type="submit">アレルギー情報を更新する</button>
+  </form>
+</body>
+</html>

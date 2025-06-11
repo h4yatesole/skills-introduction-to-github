@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>メニュー登録フォーム</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .form-section {
+      margin-bottom: 20px;
+    }
+    .allergens {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>メニュー登録フォーム</h1>
+
+  <form action="/submit-menu" method="post" enctype="multipart/form-data">
+    <!-- メニュー名 -->
+    <div class="form-section">
+      <label for="menu-name">メニュー名:</label><br>
+      <input type="text" id="menu-name" name="menu-name" required>
+    </div>
+
+    <!-- メニュー画像 -->
+    <div class="form-section">
+      <label for="menu-image">メニュー画像を選択:</label><br>
+      <input type="file" id="menu-image" name="menu-image" accept="image/*" required>
+    </div>
+
+    <!-- アレルギー品目 -->
+    <div class="form-section">
+      <p>含まれるアレルギー物質（該当するものをチェックしてください）:</p>
+      <div class="allergens">
+        <!-- 特定原材料（7品目） -->
+        <label><input type="checkbox" name="allergens[]" value="えび"> えび</label>
+        <label><input type="checkbox" name="allergens[]" value="かに"> かに</label>
+        <label><input type="checkbox" name="allergens[]" value="小麦"> 小麦</label>
+        <label><input type="checkbox" name="allergens[]" value="そば"> そば</label>
+        <label><input type="checkbox" name="allergens[]" value="卵"> 卵</label>
+        <label><input type="checkbox" name="allergens[]" value="乳"> 乳</label>
+        <label><input type="checkbox" name="allergens[]" value="落花生"> 落花生（ピーナッツ）</label>
+
+        <!-- 特定原材料に準ずるもの（21品目） -->
+        <label><input type="checkbox" name="allergens[]" value="アーモンド"> アーモンド</label>
+        <label><input type="checkbox" name="allergens[]" value="あわび"> あわび</label>
+        <label><input type="checkbox" name="allergens[]" value="いか"> いか</label>
+        <label><input type="checkbox" name="allergens[]" value="いくら"> いくら</label>
+        <label><input type="checkbox" name="allergens[]" value="オレンジ"> オレンジ</label>
+        <label><input type="checkbox" name="allergens[]" value="カシューナッツ"> カシューナッツ</label>
+        <label><input type="checkbox" name="allergens[]" value="キウイフルーツ"> キウイフルーツ</label>
+        <label><input type="checkbox" name="allergens[]" value="牛肉"> 牛肉</label>
+        <label><input type="checkbox" name="allergens[]" value="くるみ"> くるみ</label>
+        <label><input type="checkbox" name="allergens[]" value="ごま"> ごま</label>
+        <label><input type="checkbox" name="allergens[]" value="さけ"> さけ（鮭）</label>
+        <label><input type="checkbox" name="allergens[]" value="さば"> さば</label>
+        <label><input type="checkbox" name="allergens[]" value="大豆"> 大豆</label>
+        <label><input type="checkbox" name="allergens[]" value="鶏肉"> 鶏肉</label>
+        <label><input type="checkbox" name="allergens[]" value="バナナ"> バナナ</label>
+        <label><input type="checkbox" name="allergens[]" value="豚肉"> 豚肉</label>
+        <label><input type="checkbox" name="allergens[]" value="まつたけ"> まつたけ</label>
+        <label><input type="checkbox" name="allergens[]" value="もも"> もも</label>
+        <label><input type="checkbox" name="allergens[]" value="やまいも"> やまいも</label>
+        <label><input type="checkbox" name="allergens[]" value="りんご"> りんご</label>
+        <label><input type="checkbox" name="allergens[]" value="ゼラチン"> ゼラチン</label>
+      </div>
+    </div>
+
+    <button type="submit">登録する</button>
+  </form>
+</body>
+</html>

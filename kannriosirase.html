@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>店舗へのお知らせ送信</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background-color: #f7f7f7;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    form {
+      max-width: 600px;
+      margin: auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 20px;
+      font-size: 16px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    .message {
+      margin-top: 15px;
+      text-align: center;
+      color: green;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>店舗へのお知らせ送信</h1>
+
+  <form id="newsForm">
+    <label for="title">タイトル</label>
+    <input type="text" id="title" name="title" required>
+
+    <label for="content">お知らせ内容</label>
+    <textarea id="content" name="content" rows="6" required></textarea>
+
+    <button type="submit">送信する</button>
+
+    <div class="message" id="successMessage">お知らせを送信しました。</div>
+  </form>
+
+  <script>
+    document.getElementById("newsForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const title = document.getElementById("title").value;
+      const content = document.getElementById("content").value;
+
+      try {
+        const response = await fetch("/api/send-news", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ title, content })
+        });
+
+        if (response.ok) {
+          document.getElementById("successMessage").style.display = "block";
+          this.reset();
+        } else {
+          alert("送信に失敗しました。");
+        }
+      } catch (error) {
+        alert("通信エラーが発生しました。");
+      }
+    });
+  </script>
+
+</body>
+</html>

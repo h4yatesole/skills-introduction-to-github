@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>ホーム画面</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      padding: 20px;
+      margin: 0;
+      background-color: #f5f5f5;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .section {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .section h2 {
+      margin-bottom: 15px;
+      font-size: 20px;
+    }
+
+    .notice-list, .allergy-list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .notice-list li, .allergy-card {
+      background-color: #fafafa;
+      border: 1px solid #ddd;
+      padding: 12px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+
+    .allergy-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .allergy-card {
+      flex: 1 1 300px;
+    }
+
+    .btn-container {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 24px;
+      font-size: 16px;
+      background-color: #0078D7;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background-color: #005fa3;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>アレルギー対応メニュー管理システム</h1>
+
+  <!-- 運営からのお知らせ -->
+  <div class="section">
+    <h2>📢 運営からのお知らせ</h2>
+    <ul class="notice-list" id="noticeList">
+      <!-- JavaScriptで動的に追加 -->
+    </ul>
+  </div>
+
+  <!-- 最新アレルギー情報 -->
+  <div class="section">
+    <h2>🧾 最新アレルギー情報</h2>
+    <div class="allergy-container" id="allergyContainer">
+      <!-- JavaScriptで動的に追加 -->
+    </div>
+  </div>
+
+  <!-- メニュー登録・更新リンク -->
+  <div class="btn-container">
+    <a href="/menu-form.html" class="btn">メニュー登録はこちら</a>
+    <a href="/menu-update.html" class="btn">メニュー更新はこちら</a>
+  </div>
+
+  <script>
+    // お知らせデータ
+    const notices = [
+      "【重要】システムメンテナンス 6/15 0:00〜5:00",
+      "新機能「アレルギー項目検索」追加のお知らせ",
+      "管理画面のレイアウトが改善されました"
+    ];
+
+    // アレルギー更新情報データ
+    const allergyUpdates = [
+      {
+        title: "アレルギー追加: 「そら豆」",
+        text: "2025年6月から、新たに「そら豆」が管理対象に加わりました。"
+      },
+      {
+        title: "項目名修正: 「まつたけ」→「松茸」",
+        text: "表記の統一に伴い、アレルギー項目名が変更されました。"
+      },
+      {
+        title: "廃止予定: 「○○」の表示終了",
+        text: "2025年7月以降、「○○」は非表示となります。"
+      }
+    ];
+
+    // お知らせ表示
+    const noticeList = document.getElementById("noticeList");
+    notices.forEach(item => {
+      const li = document.createElement("li");
+      li.textContent = item;
+      noticeList.appendChild(li);
+    });
+
+    // アレルギー情報表示
+    const allergyContainer = document.getElementById("allergyContainer");
+    allergyUpdates.forEach(update => {
+      const card = document.createElement("div");
+      card.className = "allergy-card";
+      card.innerHTML = `<strong>${update.title}</strong><p>${update.text}</p>`;
+      allergyContainer.appendChild(card);
+    });
+  </script>
+
+</body>
+</html>
+
+

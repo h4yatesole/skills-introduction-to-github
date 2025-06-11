@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>新規アレルギー項目追加フォーム</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .form-section {
+      margin-bottom: 20px;
+    }
+    .note {
+      background-color: #e6f7ff;
+      border-left: 5px solid #3399cc;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>新規アレルギー項目追加フォーム</h1>
+
+  <div class="note">
+    ※このフォームは管理者専用です。追加された項目は、全メニューに対して更新対象となります。
+  </div>
+
+  <form action="/add-allergen" method="post">
+    <!-- アレルギー名入力 -->
+    <div class="form-section">
+      <label for="allergen-name">アレルギー項目名（例：マンゴー）:</label><br>
+      <input type="text" id="allergen-name" name="allergen-name" required>
+    </div>
+
+    <!-- 分類（任意） -->
+    <div class="form-section">
+      <label for="category">分類（任意）:</label><br>
+      <select id="category" name="category">
+        <option value="">-- 分類を選択 --</option>
+        <option value="特定原材料">特定原材料</option>
+        <option value="準ずるもの">特定原材料に準ずるもの</option>
+        <option value="その他">その他</option>
+      </select>
+    </div>
+
+    <!-- 備考 -->
+    <div class="form-section">
+      <label for="notes">備考（任意）:</label><br>
+      <textarea id="notes" name="notes" rows="3" placeholder="例：2025年○月から必須表示対象など"></textarea>
+    </div>
+
+    <button type="submit">アレルギー項目を追加する</button>
+  </form>
+</body>
+</html>

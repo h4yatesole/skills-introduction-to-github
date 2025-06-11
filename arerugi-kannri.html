@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>アレルギー項目管理</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      padding: 30px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: white;
+      margin-bottom: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 12px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #e0e0e0;
+    }
+
+    button {
+      padding: 6px 12px;
+      margin-right: 5px;
+      font-size: 14px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .delete-btn {
+      background-color: #dc3545;
+      color: white;
+    }
+
+    .delete-btn:hover {
+      background-color: #c82333;
+    }
+
+    .edit-btn {
+      background-color: #007bff;
+      color: white;
+    }
+
+    .edit-btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>現在のアレルギー項目管理</h1>
+
+  <table id="allergenTable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>アレルギー名</th>
+        <th>備考</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- データ行をJavaScriptで挿入 -->
+    </tbody>
+  </table>
+
+  <script>
+    // 仮データ（実際はサーバーから取得）
+    let allergens = [
+      { id: 1, name: "えび", notes: "" },
+      { id: 2, name: "そば", notes: "重度反応あり" },
+      { id: 3, name: "そら豆", notes: "報告により追加" }
+    ];
+
+    function renderTable() {
+      const tbody = document.querySelector("#allergenTable tbody");
+      tbody.innerHTML = "";
+
+      allergens.forEach(allergen => {
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+          <td>${allergen.id}</td>
+          <td>${allergen.name}</td>
+          <td>${allergen.notes || ""}</td>
+          <td>
+            <button class="edit-btn" onclick="editAllergen(${allergen.id})">編集</button>
+            <button class="delete-btn" onclick="deleteAllergen(${allergen.id})">削除</button>
+          </td>
+        `;
+
+        tbody.appendChild(row);
+      });
+    }
+
+    function deleteAllergen(id) {
+      if (confirm("このアレルギー項目を削除しますか？")) {
+        allergens = allergens.filter(item => item.id !== id);
+        renderTable();
+
+        // 実際のシステムではここでサーバーにも削除要求を送信する
+        // fetch(`/api/allergens/${id}`, { method: 'DELETE' });
+      }
+    }
+
+    function editAllergen(id) {
+      alert("編集機能は今後追加予定です（ID: " + id + "）");
+    }
+
+    window.addEventListener("DOMContentLoaded", renderTable);
+  </script>
+
+</body>
+</html>

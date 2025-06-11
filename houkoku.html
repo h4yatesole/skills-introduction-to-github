@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>新規アレルギー報告</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      resize: vertical;
+      height: 100px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 20px;
+      background-color: #0078D7;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #005fa3;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>新規アレルギー報告フォーム</h1>
+
+  <form id="reportForm">
+    <label for="allergen-name">アレルギー名（必須）:</label>
+    <input type="text" id="allergen-name" name="allergen-name" required>
+
+    <label for="allergen-notes">詳細・備考（任意）:</label>
+    <textarea id="allergen-notes" name="allergen-notes" placeholder="例: 実際に症状が出た食品名など"></textarea>
+
+    <button type="submit">報告する</button>
+  </form>
+
+  <script>
+    document.getElementById("reportForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById("allergen-name").value.trim();
+      const notes = document.getElementById("allergen-notes").value.trim();
+
+      if (!name) {
+        alert("アレルギー名を入力してください。");
+        return;
+      }
+
+      // 仮の送信処理（実際はfetch()などでサーバーに送る）
+      console.log("新規アレルギー報告:", { name, notes });
+      alert("ご報告ありがとうございます。管理者が確認いたします。");
+
+      // フォームをリセット
+      document.getElementById("reportForm").reset();
+    });
+  </script>
+
+</body>
+</html>

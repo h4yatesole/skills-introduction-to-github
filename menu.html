@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<title>メニュー一覧（検索付き）</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 30px;
+		}
+
+		header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-bottom: 20px;
+		}
+
+		.search-box input {
+			padding: 8px;
+			font-size: 16px;
+			width: 250px;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+		}
+
+		.menu-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+			gap: 20px;
+		}
+
+		.menu-item {
+			border: 1px solid #ddd;
+			border-radius: 8px;
+			padding: 12px;
+			text-align: center;
+			background-color: #f9f9f9;
+			transition: 0.2s;
+		}
+
+		.menu-item:hover {
+			background-color: #e8f4ff;
+		}
+
+		.menu-item img {
+			max-width: 100%;
+			height: 120px;
+			object-fit: cover;
+			border-radius: 6px;
+		}
+
+		.menu-name {
+			margin-top: 10px;
+			font-weight: bold;
+		}
+
+		/* 追加ボタン用スタイル */
+		.action-buttons {
+			display: flex;
+			gap: 12px;
+		}
+
+		.action-buttons button {
+			padding: 8px 14px;
+			font-size: 14px;
+			border: 1px solid #007bff;
+			background-color: #007bff;
+			color: white;
+			border-radius: 4px;
+			cursor: pointer;
+			transition: background-color 0.2s;
+		}
+
+		.action-buttons button:hover {
+			background-color: #0056b3;
+		}
+	</style>
+</head>
+
+<body>
+
+	<header>
+		<h1>メニュー一覧</h1>
+		<div class="search-box">
+			<input type="text" id="searchInput" placeholder="メニューを検索..." onkeyup="filterMenus()">
+		</div>
+		<!-- 追加ボタン群 -->
+		<div class="action-buttons">
+			<button onclick="order()">注文</button>
+			<button onclick="orderHistory()">注文履歴</button>
+			<button onclick="callStaff()">店員呼び出し</button>
+			<button onclick="checkout()">お会計</button>
+		</div>
+	</header>
+
+	<div class="menu-grid" id="menuGrid">
+		<!-- メニューアイテム -->
+		<div class="menu-item">
+			<img src="https://via.placeholder.com/160x120?text=唐揚げ" alt="唐揚げ定食">
+			<div class="menu-name">唐揚げ定食</div>
+		</div>
+		<div class="menu-item">
+			<img src="https://via.placeholder.com/160x120?text=海老フライ" alt="海老フライ">
+			<div class="menu-name">海老フライ</div>
+		</div>
+		<div class="menu-item">
+			<img src="https://via.placeholder.com/160x120?text=マンゴープリン" alt="マンゴープリン">
+			<div class="menu-name">マンゴープリン</div>
+		</div>
+		<div class="menu-item">
+			<img src="https://via.placeholder.com/160x120?text=グリーンカレー" alt="グリーンカレー">
+			<div class="menu-name">グリーンカレー</div>
+		</div>
+		<div class="menu-item">
+			<img src="https://via.placeholder.com/160x120?text=サーモンサラダ" alt="サーモンサラダ">
+			<div class="menu-name">鮭サラダ</div>
+		</div>
+	</div>
+
+	<script>
+		function filterMenus() {
+			const input = document.getElementById('searchInput').value.toLowerCase();
+			const items = document.querySelectorAll('.menu-item');
+
+			items.forEach(item => {
+				const name = item.querySelector('.menu-name').textContent.toLowerCase();
+				// 正しく表示するよう修正：含む場合は表示、含まない場合は非表示
+				item.style.display = name.includes(input) ? '' : 'none';
+			});
+		}
+
+		// 各ボタンの動作（現状はalertで仮実装）
+		function order() {
+			alert('注文画面へ遷移します（仮）');
+		}
+
+		function orderHistory() {
+			alert('注文履歴画面へ遷移します（仮）');
+		}
+
+		function callStaff() {
+			alert('店員を呼び出しました');
+		}
+
+		function checkout() {
+			alert('お会計画面へ遷移します（仮）');
+		}
+	</script>
+
+</body>
+
+</html>
